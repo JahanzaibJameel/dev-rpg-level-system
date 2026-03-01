@@ -1,35 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useDevStore } from './store/devStore';
+import { calculateLevel, getProgressPercentage } from './utils/level';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const totalXP = useDevStore((state) => state.totalXP);
+  const level = calculateLevel(totalXP);
+  const progress = getProgressPercentage(totalXP);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white p-8">
+      <header className="mb-8">
+        <h1 className="text-4xl font-bold">Dev RPG Level System</h1>
+        <div className="mt-4 flex items-center gap-4">
+          <span className="text-2xl font-semibold">Level {level}</span>
+          <div className="flex-1 h-4 bg-gray-700 rounded-full overflow-hidden">
+            <div
+              className="h-full bg-green-500 transition-all duration-300"
+              style={{ width: `${progress}%` }}
+            />
+          </div>
+          <span className="text-sm text-gray-300">{totalXP} XP</span>
+        </div>
+      </header>
+    </div>
+  );
 }
 
-export default App
+export default App;
