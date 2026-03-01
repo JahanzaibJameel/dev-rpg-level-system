@@ -1,73 +1,112 @@
-# React + TypeScript + Vite
+# Dev RPG Level System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Turn your developer skill tracking into a game! Gain XP by working on skills, level up, and unlock achievements.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 🎮 **RPG‑style leveling** – Each skill contributes to your total XP, increasing your level dynamically.
+- 📊 **Skill cards** – Add XP to individual skills with a click; each card shows its own progress bar.
+- 🏆 **Achievements** – Unlock them as you hit milestones:
+  - Reach Level 3
+  - 500 Total XP
+  - Have 3 skills with at least 100 XP each
+- 📈 **Analytics dashboard** – Bar chart visualizing XP per skill, plus total XP and current level.
+- ✨ **Modern 2026 UI** – Glassmorphism cards, smooth hover effects, fully responsive, with Framer Motion fade‑in animations.
+- ⚡ **Built with Vite** – Fast development and hot module replacement.
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React 18** + **TypeScript** – Component‑based UI with type safety.
+- **Vite** – Next‑generation frontend tooling.
+- **Tailwind CSS** – Utility‑first styling for rapid UI development.
+- **Zustand** – Lightweight state management for XP and skills.
+- **Framer Motion** – Smooth animations.
+- **Recharts** – Composable charting library.
+- **Lucide React** – Beautiful icons for achievements.
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Node.js (v18 or higher recommended)
+- npm or yarn
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Installation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/JahanzaibJameel/dev-rpg-level-system.git
+   cd dev-rpg-level-system
+   Install dependencies:
+   ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+bash
+npm install
+Start the development server:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+bash
+npm run dev
+Open http://localhost:5173 to view it in the browser.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Project Structure
+text
+src/
+├── components/ # Reusable UI components
+│ ├── SkillCard.tsx
+│ ├── AchievementCard.tsx
+│ └── AnalyticsSection.tsx
+├── store/ # Zustand store
+│ └── devStore.ts
+├── utils/ # Helper functions
+│ └── level.ts
+├── App.tsx # Main application
+├── main.tsx # Entry point
+└── index.css # Tailwind imports
+Git Commit History
+The project was built following a structured blueprint. The commit history reflects each step:
+
+initial: Vite + React + TypeScript + Tailwind setup
+
+feat: XP system with dynamic level calculation
+
+feat: skill system with individual XP tracking
+
+feat: achievement unlock system
+
+feat: analytics dashboard with charts
+
+style: modern 2026 UI polish and animations
+
+Usage
+Click +10 XP on any skill card to increase that skill’s XP. Total XP and level update automatically.
+
+Watch achievements unlock as you progress.
+
+The analytics chart updates in real time.
+
+Deployment
+You can easily deploy this app to Vercel, Netlify, or any static hosting service:
+
+bash
+npm run build
+Then deploy the dist folder.
+
+Built With
+Vite
+
+React
+
+TypeScript
+
+Tailwind CSS
+
+Zustand
+
+Framer Motion
+
+Recharts
+
+Lucide Icons
+
+License
+This project is open source and available under the MIT License.

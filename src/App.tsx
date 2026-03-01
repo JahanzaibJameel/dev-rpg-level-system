@@ -5,6 +5,7 @@ import { calculateLevel, getProgressPercentage } from './utils/level';
 import SkillCard from './components/SkillCard';
 import AchievementCard from './components/AchievementCard';
 import AnalyticsSection from './components/AnalyticsSection';
+import DailyBonus from './components/DailyBonus';
 
 function App() {
   const { totalXP, skills } = useDevStore();
@@ -32,16 +33,21 @@ function App() {
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white">
       <div className="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
         <motion.header {...fadeIn} className="mb-8">
-          <h1 className="text-4xl font-bold">Dev RPG Level System</h1>
-          <div className="mt-4 flex items-center gap-4">
-            <span className="text-2xl font-semibold">Level {level}</span>
-            <div className="flex-1 h-4 bg-gray-700 rounded-full overflow-hidden">
-              <div
-                className="h-full bg-green-500 transition-all duration-300"
-                style={{ width: `${progress}%` }}
-              />
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+              <h1 className="text-4xl font-bold">Dev RPG Level System</h1>
+              <div className="mt-4 flex items-center gap-4">
+                <span className="text-2xl font-semibold">Level {level}</span>
+                <div className="flex-1 h-4 bg-gray-700 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-green-500 transition-all duration-300"
+                    style={{ width: `${progress}%` }}
+                  />
+                </div>
+                <span className="text-sm text-gray-300">{totalXP} XP</span>
+              </div>
             </div>
-            <span className="text-sm text-gray-300">{totalXP} XP</span>
+            <DailyBonus />
           </div>
         </motion.header>
 

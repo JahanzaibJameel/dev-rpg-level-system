@@ -1,5 +1,5 @@
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
-import { Skill } from '../store/devStore';
+import type { Skill } from '../store/devStore';
 
 interface AnalyticsSectionProps {
   skills: Skill[];
@@ -13,8 +13,8 @@ export default function AnalyticsSection({ skills, totalXP, level }: AnalyticsSe
   return (
     <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6">
       <h3 className="text-xl font-semibold mb-4">Analytics</h3>
-      <div className="h-64 w-full">
-        <ResponsiveContainer width="100%" height="100%">
+      <div className="w-full">
+        <ResponsiveContainer width="100%" aspect={2}>
           <BarChart data={data}>
             <XAxis dataKey="name" stroke="#9ca3af" />
             <YAxis stroke="#9ca3af" />

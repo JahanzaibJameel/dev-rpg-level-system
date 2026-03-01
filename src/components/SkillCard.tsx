@@ -1,5 +1,7 @@
-import { useDevStore, Skill } from '../store/devStore';
-import { getProgressPercentage } from '../utils/level';
+import { useDevStore } from '../store/devStore';
+import { calculateSkillLevel, getProgressPercentage } from '../utils/level';
+import type { Skill } from '../store/devStore';
+import { motion } from 'framer-motion';
 
 interface SkillCardProps {
   skill: Skill;
@@ -7,13 +9,20 @@ interface SkillCardProps {
 
 export default function SkillCard({ skill }: SkillCardProps) {
   const addSkillXP = useDevStore((state) => state.addSkillXP);
-
-  // Progress bar for skill (each skill also has its own level, but we just show XP progress relative to 100 XP per level)
-  const progress = getProgressPercentage(skill.xp); // reusing same logic for simplicity
+  const skillLevel = calculateSkillLevel(skill.xp);
+  const progress = getProgressPercentage(skill.xp); // same as before, works per skill
 
   return (
-    <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:scale-105 transition-transform duration-200">
-      <h3 className="text-xl font-semibold">{skill.name}</h3>
+    <motion.div
+      whileHover={{ scale: 1.05 }}
+      className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 transition-all"
+    >
+      <div className="flex justify-between items-start">
+        <h3 className="text-xl font-semibold">{skill.name}</h3>
+        <span className="px-2 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm">
+          Lvl {skillLevel}
+        </span>
+      </div>
       <p className="text-sm text-gray-400 mt-1">XP: {skill.xp}</p>
       <div className="mt-3 h-2 bg-gray-700 rounded-full overflow-hidden">
         <div
@@ -27,6 +36,6 @@ export default function SkillCard({ skill }: SkillCardProps) {
       >
         +10 XP
       </button>
-    </div>
+    </motion.div>
   );
 }
