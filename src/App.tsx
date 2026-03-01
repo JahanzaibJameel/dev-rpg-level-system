@@ -4,6 +4,7 @@ import { useDevStore } from './store/devStore';
 import { calculateLevel, getProgressPercentage } from './utils/level';
 import SkillCard from './components/SkillCard';
 import AchievementCard from './components/AchievementCard';
+import AnalyticsSection from './components/AnalyticsSection';
 
 function App() {
   const { totalXP, skills } = useDevStore();
@@ -57,6 +58,10 @@ function App() {
               <AchievementCard key={ach.title} title={ach.title} unlocked={ach.unlocked} />
             ))}
           </div>
+        </section>
+            <section>
+          <h2 className="text-2xl font-semibold mb-4">Analytics</h2>
+          <AnalyticsSection skills={skills} totalXP={totalXP} level={level} />
         </section>
       </main>
     </div>
