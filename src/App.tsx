@@ -1,8 +1,9 @@
 import { useDevStore } from './store/devStore';
 import { calculateLevel, getProgressPercentage } from './utils/level';
+import SkillCard from './components/SkillCard';
 
 function App() {
-  const totalXP = useDevStore((state) => state.totalXP);
+  const { totalXP, skills } = useDevStore();
   const level = calculateLevel(totalXP);
   const progress = getProgressPercentage(totalXP);
 
@@ -21,6 +22,15 @@ function App() {
           <span className="text-sm text-gray-300">{totalXP} XP</span>
         </div>
       </header>
+
+      <main>
+        <h2 className="text-2xl font-semibold mb-4">Skills</h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {skills.map((skill) => (
+            <SkillCard key={skill.name} skill={skill} />
+          ))}
+        </div>
+      </main>
     </div>
   );
 }
